@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import NavBar from '../components/navbar';
 import CarouselMain from '../components/carousel';
 import ScrollSpy from '../components/scrollSpy';
+import Footer from '../components/footer';
 
 const Main_page = observer(() => {
 
@@ -12,6 +13,7 @@ const Main_page = observer(() => {
             <NavBar/>
             <CarouselMain/>
             <ScrollSpy/>
+            <Footer/>
         </div>
     )
 });
