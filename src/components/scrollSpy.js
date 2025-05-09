@@ -170,7 +170,7 @@ const ScrollSpy = observer( () => {
                     </div>
                     {!isMobile && (
                         <img
-                        style={{ width: '25%', height: 'auto' }}
+                        style={{ width: '30%', height: 'auto' }}
                         src={Section21}
                     />
                     )}
