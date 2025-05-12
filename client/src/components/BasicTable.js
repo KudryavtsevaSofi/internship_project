@@ -4,10 +4,8 @@ import { COLUMNS } from "./columns";
 import "./table.css";
 
 export const BasicTable = () => {
-  // State for planets and suitabilities
   const [planets, setPlanets] = useState([]);
   const [suitabilities, setSuitabilities] = useState([]);
-  // State for form data with default empty strings to ensure controlled inputs
   const [formData, setFormData] = useState({
     id: "",
     name: "",
@@ -16,7 +14,6 @@ export const BasicTable = () => {
     suitabilityId: "",
     note: "",
   });
-  // State to track if we're editing
   const [isEditing, setIsEditing] = useState(false);
 
   // Fetch planets and suitabilities on mount
@@ -44,7 +41,7 @@ export const BasicTable = () => {
       ...COLUMNS.filter((col) => col.accessorKey !== "suitabilityId"),
       {
         id: "suitability",
-        header: "Suitability",
+        header: "Пригодность для жизни",
         accessorFn: (row) => {
           const suitability = suitabilities.find((s) => s.id === row.suitabilityId);
           return suitability ? suitability.name : row.suitabilityId || "Unknown";
@@ -52,7 +49,7 @@ export const BasicTable = () => {
       },
       {
         id: "actions",
-        header: "Actions",
+        header: "Действия",
         cell: ({ row }) => (
           <div className="d-column justify-content-center">
             <button className="btn btn-outline-secondary mb-1 w-100" onClick={() => handleEdit(row.original)} >Изменить</button>
@@ -182,11 +179,11 @@ export const BasicTable = () => {
   };
 
   return (
-    <div>
+    <div className="w-100 p-3">
       {/* Form for creating/editing planets */}
-      <form onSubmit={handleSubmit} className="planet-form mb-4 mt-2">
+      <form onSubmit={handleSubmit} className="planet-form mb-4 mt-2 w-100 p-3" style={{backgroundColor: '#f2f2f2'}}>
         <h3>{isEditing ? "Отредактируйте данные о планете" : "Добавьте новую планету"}</h3>
-        <div className="row">
+        <div className="row g-3">
           {/* Left Column: Name, Type, Distance */}
           <div className="col-md-6">
             <div className="form-group mb-2">
@@ -263,41 +260,43 @@ export const BasicTable = () => {
         {/* Centered Buttons */}
         <div className="d-flex justify-content-center mt-3">
           <button type="submit" className="btn btn-success me-2">
-            {isEditing ? "Update" : "Create"}
+            {isEditing ? "Изменить" : "Добавить"}
           </button>
           <button type="button" className="btn btn-secondary" onClick={handleCancel}>
-            Cancel
+            Отмена
           </button>
         </div>
       </form>
 
       {/* Table */}
-      <table>
-        <thead>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map((header) => (
-                <th key={header.id}>
-                  {header.isPlaceholder
-                    ? null
-                    : flexRender(header.column.columnDef.header, header.getContext())}
-                </th>
-              ))}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {table.getRowModel().rows.map((row) => (
-            <tr key={row.id}>
-              {row.getVisibleCells().map((cell) => (
-                <td key={cell.id}>
-                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <div className="table-responsive">
+        <table className="w-100">
+          <thead>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <tr key={headerGroup.id}>
+                {headerGroup.headers.map((header) => (
+                  <th key={header.id}>
+                    {header.isPlaceholder
+                      ? null
+                      : flexRender(header.column.columnDef.header, header.getContext())}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody>
+            {table.getRowModel().rows.map((row) => (
+              <tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

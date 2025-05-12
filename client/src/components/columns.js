@@ -4,23 +4,23 @@ export const COLUMNS = [
         accessorKey: 'id',
     },
     {
-        header: 'Name',
+        header: 'Название',
         accessorKey: 'name',
     },
     {
-        header: 'Type',
+        header: 'Тип',
         accessorKey: 'type',
     },
     {
-        header: 'Distance',
+        header: 'Расстояние до Земли, св. г.',
         accessorKey: 'distance',
     },
     {
-        header: 'SuitabilityId',
+        header: 'Пригодность для жизни',
         accessorKey: 'suitabilityId',
     },
     {
-        header: 'Note',
+        header: 'Примечание',
         accessorKey: 'note',
     },
 ]

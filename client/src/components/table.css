@@ -20,3 +20,21 @@ table th {
     background-color: #3e3e3e;
     color: white;
 }
+
+/* Адаптивность для маленьких экранов */
+@media (max-width: 576px) {
+  .planet-form .form-group {
+    width: 100%;
+  }
+  
+  .btn {
+    width: 100%;
+    margin-bottom: 8px;
+  }
+
+  th, td {
+    padding: 6px;
+    font-size: 0.9rem;
+  }
+}
+
