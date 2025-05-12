@@ -1,4 +1,3 @@
-import React from 'react';
 import { Container } from "react-bootstrap";
 import { observer } from 'mobx-react-lite';
 import Navbar from '../components/navbar';

@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
 import { COLUMNS } from "./columns";
 import "./table.css";
@@ -16,7 +16,6 @@ export const BasicTable = () => {
   });
   const [isEditing, setIsEditing] = useState(false);
 
-  // Fetch planets and suitabilities on mount
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -35,7 +34,6 @@ export const BasicTable = () => {
     fetchData();
   }, []);
 
-  // Memoized columns
   const columns = useMemo(
     () => [
       ...COLUMNS.filter((col) => col.accessorKey !== "suitabilityId"),
@@ -61,23 +59,19 @@ export const BasicTable = () => {
     [suitabilities]
   );
 
-  // Memoized data
   const data = useMemo(() => planets, [planets]);
 
-  // Table instance
   const table = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
 
-  // Handle form input changes
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission (Create or Update)
   const handleSubmit = async (e) => {
     e.preventDefault();
     const planetData = {
@@ -90,7 +84,6 @@ export const BasicTable = () => {
 
     try {
       if (isEditing) {
-        // Update existing planet
         const response = await fetch(`http://localhost:5000/planets/${formData.id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -103,7 +96,6 @@ export const BasicTable = () => {
           );
         }
       } else {
-        // Create new planet
         const response = await fetch("http://localhost:5000/planets", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -114,7 +106,6 @@ export const BasicTable = () => {
           setPlanets((prev) => [...prev, newPlanet]);
         }
       }
-      // Reset form with defined values
       setFormData({
         id: "",
         name: "",
@@ -129,9 +120,7 @@ export const BasicTable = () => {
     }
   };
 
-  // Handle edit button click
   const handleEdit = (planet) => {
-    // Ensure all fields are defined to prevent uncontrolled inputs
     setFormData({
       id: planet.id?.toString() || "",
       name: planet.name || "",
@@ -143,17 +132,14 @@ export const BasicTable = () => {
     setIsEditing(true);
   };
 
-  // Handle delete button click
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`http://localhost:5000/planets/${id}`, {
         method: "DELETE",
       });
       if (response.ok) {
-        // Update state by filtering out the deleted planet
         setPlanets((prev) => {
           const updatedPlanets = prev.filter((planet) => planet.id.toString() !== id.toString());
-          // console.log("Updated planets:", updatedPlanets); // Debug log
           return updatedPlanets;
         });
       } else {
@@ -164,9 +150,7 @@ export const BasicTable = () => {
     }
   };
 
-  // Handle form reset/cancel
   const handleCancel = () => {
-    // Reset form with defined values
     setFormData({
       id: "",
       name: "",
@@ -180,11 +164,11 @@ export const BasicTable = () => {
 
   return (
     <div className="w-100 p-3">
-      {/* Form for creating/editing planets */}
+      {/* Форма создания и редактирования планет */}
       <form onSubmit={handleSubmit} className="planet-form mb-4 mt-2 w-100 p-3" style={{backgroundColor: '#f2f2f2'}}>
         <h3>{isEditing ? "Отредактируйте данные о планете" : "Добавьте новую планету"}</h3>
         <div className="row g-3">
-          {/* Left Column: Name, Type, Distance */}
+          {/* Левая часть формы */}
           <div className="col-md-6">
             <div className="form-group mb-2">
               <label htmlFor="name">Название:</label>
@@ -223,7 +207,7 @@ export const BasicTable = () => {
               />
             </div>
           </div>
-          {/* Right Column: Note, Suitability */}
+          {/* Правая часть формы */}
           <div className="col-md-6">
             <div className="form-group mb-2">
               <label htmlFor="note">Примечание:</label>
@@ -257,7 +241,7 @@ export const BasicTable = () => {
             </div>
           </div>
         </div>
-        {/* Centered Buttons */}
+        {/* Кнопки */}
         <div className="d-flex justify-content-center mt-3">
           <button type="submit" className="btn btn-success me-2">
             {isEditing ? "Изменить" : "Добавить"}
@@ -268,7 +252,7 @@ export const BasicTable = () => {
         </div>
       </form>
 
-      {/* Table */}
+      {/* Таблицы */}
       <div className="table-responsive">
         <table className="w-100">
           <thead>

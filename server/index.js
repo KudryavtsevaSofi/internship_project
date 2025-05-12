@@ -7,22 +7,21 @@ const app = express();
 const port = 5000;
 const dataFilePath = path.join(__dirname, "database", "data.json");
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Helper function to read data.json
+//Чтение data.json
 const readData = async () => {
   const rawData = await fs.readFile(dataFilePath, "utf-8");
   return JSON.parse(rawData);
 };
 
-// Helper function to write to data.json
+//Написание data.json
 const writeData = async (data) => {
   await fs.writeFile(dataFilePath, JSON.stringify(data, null, 2));
 };
 
-// Helper function to generate a numeric ID
+// Гененерация ID
 const generateId = async () => {
   const data = await readData();
   const ids = data.planets.map((planet) => parseInt(planet.id)).filter((id) => !isNaN(id));
@@ -30,7 +29,7 @@ const generateId = async () => {
   return maxId + 1;
 };
 
-// GET /planets - Read all planets
+// GET чтение планет
 app.get("/planets", async (req, res) => {
   try {
     const data = await readData();
@@ -40,7 +39,7 @@ app.get("/planets", async (req, res) => {
   }
 });
 
-// POST /planets - Create a new planet
+// POST создание планет
 app.post("/planets", async (req, res) => {
   try {
     const data = await readData();
@@ -61,7 +60,7 @@ app.post("/planets", async (req, res) => {
   }
 });
 
-// PUT /planets/:id - Update a planet
+// PUT обновление планет
 app.put("/planets/:id", async (req, res) => {
   try {
     const data = await readData();
@@ -84,7 +83,7 @@ app.put("/planets/:id", async (req, res) => {
   }
 });
 
-// DELETE /planets/:id - Delete a planet
+// DELETE удаление планет
 app.delete("/planets/:id", async (req, res) => {
   try {
     const data = await readData();
@@ -97,7 +96,7 @@ app.delete("/planets/:id", async (req, res) => {
   }
 });
 
-// GET /suitabilities - Read all suitabilities
+// GET чтение пригодности
 app.get("/suitabilities", async (req, res) => {
   try {
     const data = await readData();

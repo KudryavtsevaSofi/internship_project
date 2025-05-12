@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { MAIN_ROUTE, TABLE_ROUTE } from '../utils/consts';
@@ -20,7 +20,7 @@ const NavBar = observer(() => {
     return (
       <Navbar bg="dark" data-bs-theme="dark" sticky="top" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">InternSpaceShip</Navbar.Brand>
+          <Navbar.Brand href="/">InternSpaceShip</Navbar.Brand>
           <Navbar.Toggle aria-controls="myNavbar" />
           <Navbar.Collapse id="myNavbar">
             <Nav className="me-auto">
@@ -36,7 +36,7 @@ const NavBar = observer(() => {
                   color: 'whitesmoke',
                   textDecoration: 'none',
                   padding: '0 10px',
-                  lineHeight: '40px', // Для выравнивания по вертикали
+                  lineHeight: '40px', 
                 }}
               >
                 Главная
@@ -47,7 +47,7 @@ const NavBar = observer(() => {
                   color: 'whitesmoke',
                   textDecoration: 'none',
                   padding: '0 10px',
-                  lineHeight: '40px', // Для выравнивания по вертикали
+                  lineHeight: '40px',
                 }}
               >
                 Таблица

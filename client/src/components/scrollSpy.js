@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { observer } from "mobx-react-lite";
 import Star1 from '../images/star1.jpg';
 import Star2 from '../images/star2.jpg';
@@ -6,7 +6,6 @@ import Star3 from '../images/star3.jpg';
 import Back1 from '../images/background1.jpg';
 import Back2 from '../images/background2.jpg';
 import Section1 from '../images/section1.png';
-import Section2 from '../images/section2.png';
 import Section21 from '../images/section2_.jpg';
 import Section3 from '../images/section3.jpg';
 import Section41 from '../images/section41.jpg';
@@ -156,7 +155,6 @@ const ScrollSpy = observer( () => {
                         gap: '20px',
                         width: '100%', 
                         maxWidth: '100%', 
-                        // padding: '20px',
                         boxSizing: 'border-box', 
                         height: '100%'
                     }}

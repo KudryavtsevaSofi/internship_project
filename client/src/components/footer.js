@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import TG from '../images/tg.png';
 import GH from '../images/gh.png'
 
@@ -26,7 +26,7 @@ const Footer = () => {
                     </a>
                 </div>
             </section>
-            <div class="text-center p-3" style={{color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
+            <div className="text-center p-3" style={{color: 'white', backgroundColor: 'rgba(0, 0, 0, 0.5)'}}>
                 © 2025 InternSpaceShip
             </div>
       </footer>
