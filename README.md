@@ -16,4 +16,4 @@
 
 ### `npm start`
 
-![alt text](https://raw.githubusercontent.com/KudryavtsevaSofi/internship_project/905e392903ba40818906700ee7437db9e3d5c51a/2img.jpeg)
+![alt text](img1.png)
